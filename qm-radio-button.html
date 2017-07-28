@@ -1,0 +1,203 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<dom-module id="qm-radio-button">
+    <template strip-whitespace>
+        <style>
+            :host {
+                overflow: hidden;
+                position: relative;
+                display: inline-block;
+                width: 140px;
+                min-width: 140px;
+                cursor: pointer;
+                text-align: center;
+                color: #333333;
+                border: #f2f2f2 solid 1px;
+                border-radius: 6px;
+                background: #ffffff;
+                font-size: 14px;
+                margin-right: 8px;
+                margin-bottom: 8px;
+            }
+
+            :host(:focus) {
+                outline: none;
+            }
+
+            :host([checked]) {
+                background: #55a8f8;
+                border-color: #55a8f8;
+                color: #ffffff;
+            }
+
+            #qmLabel {
+                position: relative;
+                display: block;
+                padding: 8px;
+                line-height: 20px;
+                color: #808080;
+                border-bottom: #f2f2f2 solid 1px;
+            }
+
+            #qmLabel span {
+                font-size: 20px;
+            }
+
+            #qmLabel img {
+                display: block;
+                width: 40px;
+                margin: 0 auto;
+            }
+
+            #qmDescription {
+                color: #808080;
+                padding: 8px;
+            }
+
+            :host([checked]) #qmLabel,
+            :host([checked]) #qmDescription {
+                border-color: #ffffff;
+                color: #ffffff;
+            }
+
+            ::slotted(paper-dropdown-button) {
+                display: block;
+                padding: 0;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+            }
+
+            ::slotted(paper-listbox) {
+                padding: 0;
+            }
+
+            #qmLabel[hidden] {
+                display: none;
+            }
+
+            /* disabled state */
+            :host([disabled]) #qmLabel,
+            :host([disabled]) #qmDescription {
+                /* slightly darker than the button, so that it's readable */
+                opacity: 0.65;
+            }
+
+            :host paper-ripple {
+                color: rgba(0, 0, 0, 0);
+            }
+
+            #qmLabel span.qm-icon {
+                /* use !important to prevent issues with browser extensions that change fonts */
+                font-family: 'icomoon' !important;
+                speak: none;
+                font-style: normal;
+                font-weight: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+                display: block;
+                font-size: 40px;
+
+                /* Better Font Rendering =========== */
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            .qm-icon-centos:before {
+                content: "\e900";
+            }
+            .qm-icon-coreos:before {
+                content: "\e901";
+            }
+            .qm-icon-debian:before {
+                content: "\e902";
+            }
+            .qm-icon-fedora:before {
+                content: "\e903";
+            }
+            .qm-icon-freebsd:before {
+                content: "\e904";
+            }
+            .qm-icon-nixos:before {
+                content: "\e905";
+            }
+            .qm-icon-ubuntu:before {
+                content: "\e906";
+            }
+            .qm-icon-windows:before {
+                content: "\e907";
+            }
+        </style>
+
+        <div id="qmLabel">
+            <span hidden$="{{!icon}}" class$="qm-icon [[icon]]"></span>
+            <span hidden$="{{!price}}">[[price]]</span>
+            [[label]]
+        </div>
+
+        <div id="qmDescription" slot="qm-radio-content" hidden$="{{dropdown}}">
+            <slot name="qm-radio-content"></slot>
+        </div>
+
+        <div id="qmDropdown" slot="qm-radio-dropdown" hidden$="{{!dropdown}}">
+            <slot name="qm-radio-dropdown"></slot>
+        </div>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'qm-radio-button',
+
+            behaviors: [
+                Polymer.PaperCheckedElementBehavior
+            ],
+
+            hostAttributes: {
+                role: 'radio',
+                'aria-checked': false,
+                tabindex: 0
+            },
+
+            properties: {
+                label: {
+                    type: String
+                },
+                price: {
+                    type: String
+                },
+                icon: {
+                    type: String
+                },
+                dropdown: {
+                    type: Boolean
+                }
+            },
+
+            /*listeners: {
+                'iron-change': '_selectionChange'
+            },
+
+            _selectionChange: function (event) {
+                var isTrueSet = (jQuery(this).attr('aria-selected') == 'true');
+
+                if( !isTrueSet ){
+                    var dropdown = this.getElementsByTagName("paper-dropdown-menu");
+                    if( dropdown && dropdown.length && typeof dropdown[0]._setSelectedItem === "function" ){
+                        dropdown[0]._setSelectedItem(null);
+                    }
+                }
+            },*/
+
+            ready: function () {
+
+            }
+        })
+    </script>
+</dom-module>
