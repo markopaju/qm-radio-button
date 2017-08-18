@@ -25,6 +25,9 @@
                 font-size: 14px;
                 margin-right: 8px;
                 margin-bottom: 8px;
+
+                @apply(--paper-input-container-input);
+                @apply(--paper-dropdown-menu-input);
             }
 
             :host(:focus) {
@@ -42,7 +45,7 @@
                 display: block;
                 padding: 8px;
                 line-height: 20px;
-                color: #808080;
+                color: #333333;
                 border-bottom: #f2f2f2 solid 1px;
             }
 
@@ -83,10 +86,10 @@
             }
 
             /* disabled state */
-            :host([disabled]) #qmLabel,
-            :host([disabled]) #qmDescription {
-                /* slightly darker than the button, so that it's readable */
+            :host([disabled]) {
                 opacity: 0.65;
+                cursor: not-allowed;
+                pointer-events: inherit !important;
             }
 
             :host paper-ripple {
@@ -104,11 +107,13 @@
                 line-height: 1;
                 display: block;
                 font-size: 40px;
-
+                padding-top: 4px;
                 /* Better Font Rendering =========== */
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
+                color: #808080;
             }
+            :host([checked]) #qmLabel span.qm-icon { color: #ffffff; }
 
             .qm-icon-centos:before {
                 content: "\e900";
@@ -137,8 +142,8 @@
         </style>
 
         <div id="qmLabel">
-            <span hidden$="{{!icon}}" class$="qm-icon [[icon]]"></span>
-            <span hidden$="{{!price}}">[[price]]</span>
+            <template is="dom-if" if="{{icon}}"><span class$="qm-icon [[icon]]"></span></template>
+            <template is="dom-if" if="{{price}}"><span>[[price]]</span></template>
             [[label]]
         </div>
 
