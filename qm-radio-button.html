@@ -25,9 +25,6 @@
                 font-size: 14px;
                 margin-right: 8px;
                 margin-bottom: 8px;
-
-                @apply(--paper-input-container-input);
-                @apply(--paper-dropdown-menu-input);
             }
 
             :host(:focus) {
@@ -70,15 +67,18 @@
                 color: #ffffff;
             }
 
-            ::slotted(paper-dropdown-button) {
+            ::slotted(select) {
                 display: block;
-                padding: 0;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
                 border-bottom-left-radius: 6px;
                 border-bottom-right-radius: 6px;
+                border: 0;
+                color: #808080;
             }
-
-            ::slotted(paper-listbox) {
-                padding: 0;
+            :host([checked]) ::slotted(select) {
+                background: #55a8f8;
+                color: #ffffff;
             }
 
             #qmLabel[hidden] {
