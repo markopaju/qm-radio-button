@@ -117,98 +117,22 @@
 
             .qm-icon-appliance:before {
                 content: "\e908";
-                color: #818181;
-            }
-            .qm-icon-aws .path1:before {
-                content: "\e909";
-                color: rgb(248, 153, 29);
-            }
-            .qm-icon-aws .path2:before {
-                content: "\e90a";
-                margin-left: -1.673828125em;
-                color: rgb(36, 48, 63);
-            }
-            .qm-icon-aws .path3:before {
-                content: "\e90b";
-                margin-left: -1.673828125em;
-                color: rgb(36, 48, 63);
-            }
-            .qm-icon-aws .path4:before {
-                content: "\e90c";
-                margin-left: -1.673828125em;
-                color: rgb(36, 48, 63);
-            }
-            .qm-icon-aws .path5:before {
-                content: "\e90d";
-                margin-left: -1.673828125em;
-                color: rgb(248, 153, 29);
-            }
-            .qm-icon-azure:before {
-                content: "\e90e";
-                color: #1673ba;
             }
             .qm-icon-cloud-full:before {
                 content: "\e90f";
-                color: #818181;
             }
             .qm-icon-cube:before {
                 content: "\e910";
-                color: #818181;
             }
             .qm-icon-cubes:before {
                 content: "\e911";
-                color: #818181;
             }
             .qm-icon-data-center:before {
                 content: "\e912";
-                color: #818181;
-            }
-            .qm-icon-google .path1:before {
-                content: "\e913";
-                color: rgb(85, 126, 191);
-            }
-            .qm-icon-google .path2:before {
-                content: "\e914";
-                margin-left: -1.2431640625em;
-                color: rgb(247, 187, 23);
-            }
-            .qm-icon-google .path3:before {
-                content: "\e915";
-                margin-left: -1.2431640625em;
-                color: rgb(232, 69, 53);
-            }
-            .qm-icon-google .path4:before {
-                content: "\e916";
-                margin-left: -1.2431640625em;
-                color: rgb(55, 167, 82);
-            }
-            .qm-icon-google .path5:before {
-                content: "\e917";
-                margin-left: -1.2431640625em;
-                color: rgb(232, 69, 53);
-            }
-            .qm-icon-google .path6:before {
-                content: "\e918";
-                margin-left: -1.2431640625em;
-                color: rgb(232, 69, 53);
-            }
-            .qm-icon-hetzner:before {
-                content: "\e919";
-                color: #d61f30;
-            }
-            .qm-icon-ocean:before {
-                content: "\e91a";
-                color: #416bb3;
             }
             .qm-icon-rocket:before {
                 content: "\e91b";
-                color: #818181;
             }
-            .qm-icon-stack:before {
-                content: "\e91c";
-                color: #ee244a;
-            }
-            
             .qm-icon-centos:before {
                 content: "\e900";
             }
@@ -243,6 +167,7 @@
 
         <div id="qmLabel">
             <template is="dom-if" if="{{icon}}"><span class$="qm-icon [[icon]]"></span></template>
+            <template is="dom-if" if="{{image}}"><img src$="[[image]]" alt=""/></template>
             <template is="dom-if" if="{{price}}"><span>[[price]]</span></template>
             [[label]]
             <div>[[hourly]]</div>
@@ -279,6 +204,9 @@
                     type: String
                 },
                 icon: {
+                    type: String
+                },
+                image: {
                     type: String
                 },
                 dropdown: {
